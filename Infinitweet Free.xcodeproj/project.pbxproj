@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4567D7A41A5AAE1C00D2D820 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567D7A31A5AAE1C00D2D820 /* AppDelegate.swift */; };
+		4567D7A61A5AAE1C00D2D820 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567D7A51A5AAE1C00D2D820 /* ViewController.swift */; };
+		4567D7A91A5AAE1D00D2D820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4567D7A71A5AAE1D00D2D820 /* Main.storyboard */; };
+		4567D7AB1A5AAE1D00D2D820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4567D7AA1A5AAE1D00D2D820 /* Images.xcassets */; };
+		4567D7AE1A5AAE1D00D2D820 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4567D7AC1A5AAE1D00D2D820 /* LaunchScreen.xib */; };
+		4567D7BA1A5AAE1D00D2D820 /* Infinitweet_FreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567D7B91A5AAE1D00D2D820 /* Infinitweet_FreeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4567D7B41A5AAE1D00D2D820 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4567D7961A5AAE1C00D2D820 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4567D79D1A5AAE1C00D2D820;
+			remoteInfo = "Infinitweet Free";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4567D79E1A5AAE1C00D2D820 /* Infinitweet Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Infinitweet Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4567D7A21A5AAE1C00D2D820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4567D7A31A5AAE1C00D2D820 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4567D7A51A5AAE1C00D2D820 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4567D7A81A5AAE1D00D2D820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4567D7AA1A5AAE1D00D2D820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4567D7AD1A5AAE1D00D2D820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4567D7B31A5AAE1D00D2D820 /* Infinitweet FreeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Infinitweet FreeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4567D7B81A5AAE1D00D2D820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4567D7B91A5AAE1D00D2D820 /* Infinitweet_FreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infinitweet_FreeTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4567D79B1A5AAE1C00D2D820 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4567D7B01A5AAE1D00D2D820 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4567D7951A5AAE1C00D2D820 = {
+			isa = PBXGroup;
+			children = (
+				4567D7A01A5AAE1C00D2D820 /* Infinitweet Free */,
+				4567D7B61A5AAE1D00D2D820 /* Infinitweet FreeTests */,
+				4567D79F1A5AAE1C00D2D820 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4567D79F1A5AAE1C00D2D820 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4567D79E1A5AAE1C00D2D820 /* Infinitweet Free.app */,
+				4567D7B31A5AAE1D00D2D820 /* Infinitweet FreeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4567D7A01A5AAE1C00D2D820 /* Infinitweet Free */ = {
+			isa = PBXGroup;
+			children = (
+				4567D7A31A5AAE1C00D2D820 /* AppDelegate.swift */,
+				4567D7A51A5AAE1C00D2D820 /* ViewController.swift */,
+				4567D7A71A5AAE1D00D2D820 /* Main.storyboard */,
+				4567D7AA1A5AAE1D00D2D820 /* Images.xcassets */,
+				4567D7AC1A5AAE1D00D2D820 /* LaunchScreen.xib */,
+				4567D7A11A5AAE1C00D2D820 /* Supporting Files */,
+			);
+			path = "Infinitweet Free";
+			sourceTree = "<group>";
+		};
+		4567D7A11A5AAE1C00D2D820 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4567D7A21A5AAE1C00D2D820 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4567D7B61A5AAE1D00D2D820 /* Infinitweet FreeTests */ = {
+			isa = PBXGroup;
+			children = (
+				4567D7B91A5AAE1D00D2D820 /* Infinitweet_FreeTests.swift */,
+				4567D7B71A5AAE1D00D2D820 /* Supporting Files */,
+			);
+			path = "Infinitweet FreeTests";
+			sourceTree = "<group>";
+		};
+		4567D7B71A5AAE1D00D2D820 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4567D7B81A5AAE1D00D2D820 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4567D79D1A5AAE1C00D2D820 /* Infinitweet Free */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4567D7BD1A5AAE1D00D2D820 /* Build configuration list for PBXNativeTarget "Infinitweet Free" */;
+			buildPhases = (
+				4567D79A1A5AAE1C00D2D820 /* Sources */,
+				4567D79B1A5AAE1C00D2D820 /* Frameworks */,
+				4567D79C1A5AAE1C00D2D820 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Infinitweet Free";
+			productName = "Infinitweet Free";
+			productReference = 4567D79E1A5AAE1C00D2D820 /* Infinitweet Free.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4567D7B21A5AAE1D00D2D820 /* Infinitweet FreeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4567D7C01A5AAE1D00D2D820 /* Build configuration list for PBXNativeTarget "Infinitweet FreeTests" */;
+			buildPhases = (
+				4567D7AF1A5AAE1D00D2D820 /* Sources */,
+				4567D7B01A5AAE1D00D2D820 /* Frameworks */,
+				4567D7B11A5AAE1D00D2D820 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4567D7B51A5AAE1D00D2D820 /* PBXTargetDependency */,
+			);
+			name = "Infinitweet FreeTests";
+			productName = "Infinitweet FreeTests";
+			productReference = 4567D7B31A5AAE1D00D2D820 /* Infinitweet FreeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4567D7961A5AAE1C00D2D820 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Ruben;
+				TargetAttributes = {
+					4567D79D1A5AAE1C00D2D820 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					4567D7B21A5AAE1D00D2D820 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 4567D79D1A5AAE1C00D2D820;
+					};
+				};
+			};
+			buildConfigurationList = 4567D7991A5AAE1C00D2D820 /* Build configuration list for PBXProject "Infinitweet Free" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4567D7951A5AAE1C00D2D820;
+			productRefGroup = 4567D79F1A5AAE1C00D2D820 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4567D79D1A5AAE1C00D2D820 /* Infinitweet Free */,
+				4567D7B21A5AAE1D00D2D820 /* Infinitweet FreeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4567D79C1A5AAE1C00D2D820 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4567D7A91A5AAE1D00D2D820 /* Main.storyboard in Resources */,
+				4567D7AE1A5AAE1D00D2D820 /* LaunchScreen.xib in Resources */,
+				4567D7AB1A5AAE1D00D2D820 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4567D7B11A5AAE1D00D2D820 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4567D79A1A5AAE1C00D2D820 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4567D7A61A5AAE1C00D2D820 /* ViewController.swift in Sources */,
+				4567D7A41A5AAE1C00D2D820 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4567D7AF1A5AAE1D00D2D820 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4567D7BA1A5AAE1D00D2D820 /* Infinitweet_FreeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4567D7B51A5AAE1D00D2D820 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4567D79D1A5AAE1C00D2D820 /* Infinitweet Free */;
+			targetProxy = 4567D7B41A5AAE1D00D2D820 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4567D7A71A5AAE1D00D2D820 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4567D7A81A5AAE1D00D2D820 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4567D7AC1A5AAE1D00D2D820 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4567D7AD1A5AAE1D00D2D820 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4567D7BB1A5AAE1D00D2D820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4567D7BC1A5AAE1D00D2D820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4567D7BE1A5AAE1D00D2D820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Infinitweet Free/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4567D7BF1A5AAE1D00D2D820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Infinitweet Free/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4567D7C11A5AAE1D00D2D820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Infinitweet FreeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Infinitweet Free.app/Infinitweet Free";
+			};
+			name = Debug;
+		};
+		4567D7C21A5AAE1D00D2D820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Infinitweet FreeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Infinitweet Free.app/Infinitweet Free";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4567D7991A5AAE1C00D2D820 /* Build configuration list for PBXProject "Infinitweet Free" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4567D7BB1A5AAE1D00D2D820 /* Debug */,
+				4567D7BC1A5AAE1D00D2D820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4567D7BD1A5AAE1D00D2D820 /* Build configuration list for PBXNativeTarget "Infinitweet Free" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4567D7BE1A5AAE1D00D2D820 /* Debug */,
+				4567D7BF1A5AAE1D00D2D820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4567D7C01A5AAE1D00D2D820 /* Build configuration list for PBXNativeTarget "Infinitweet FreeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4567D7C11A5AAE1D00D2D820 /* Debug */,
+				4567D7C21A5AAE1D00D2D820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4567D7961A5AAE1C00D2D820 /* Project object */;
+}
