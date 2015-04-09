@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5D6A867B-5ADD-4CA8-BA44-F8CE5425167B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Infinitweet Free</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>54FD550AD2EABDEABB28EF0E952D60E8C8C9EE4B</key>
+		<string>https://github.com/rubencodes/Infinitweet-Free.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Infinitweet Free.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>54FD550AD2EABDEABB28EF0E952D60E8C8C9EE4B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rubencodes/Infinitweet-Free.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>54FD550AD2EABDEABB28EF0E952D60E8C8C9EE4B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>54FD550AD2EABDEABB28EF0E952D60E8C8C9EE4B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Infinitweet%20Free</string>
+		</dict>
+	</array>
+</dict>
+</plist>

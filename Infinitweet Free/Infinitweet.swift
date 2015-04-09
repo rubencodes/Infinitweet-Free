@@ -6,85 +6,92 @@
 //  Copyright (c) 2015 Ruben. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
 
 class Infinitweet {
     var image : UIImage
+    let padding = 20.0 as CGFloat //default padding for all
     
-    init(text : String, font : UIFont, color : UIColor, background : UIColor, padding : CGFloat) {
+    //prepare wordmark for later
+    let wordmark = "Infinitweet" as NSString
+    let wordmarkAttributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14.0), NSForegroundColorAttributeName: UIColor(white: 0, alpha: 0.5)]
+    
+    init(text : String, font : UIFont, color : UIColor, background : UIColor, wordmarkHidden : Bool) {
+        let ratio = 2 as CGFloat //Twitter images in stream appear in 2:1 aspect ratio
+        let delta = 10 as CGFloat //Amount to change image by per cycle
+        let maxCycles = 1000 //After this many cycles, give up
+        
         //set text properties
+        let options = unsafeBitCast(NSStringDrawingOptions.UsesLineFragmentOrigin.rawValue |
+            NSStringDrawingOptions.UsesFontLeading.rawValue,
+            NSStringDrawingOptions.self)
         let textAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: color]
         
         //set initial image attempt properties
-        var width = 200
-        var imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(CGFloat(width), CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textAttributes, context: nil)
+        var currentWidth = 200 as CGFloat
+        var imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(currentWidth, CGFloat.max), options: options, attributes: textAttributes, context: nil)
         
-        //prepare wordmark for later
-        let wordmark = "Infinitweet" as NSString
-        let wordmarkAttributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14.0), NSForegroundColorAttributeName: UIColor(white: 0, alpha: 0.5)]
-        var wordmarkSize = wordmark.boundingRectWithSize(CGSizeMake(CGFloat.max, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: wordmarkAttributes, context: nil)
+        //wordmark size
+        let wordmarkSize = wordmark.boundingRectWithSize(CGSizeMake(CGFloat.max, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: wordmarkAttributes, context: nil)
         
-        //avoid infinite loops
-        var repeatLimitHit = false
-        var lastWidth = 0.0 as CGFloat
-        var lastHeight = 0.0 as CGFloat
-        var repeatCount = 0
+        var cycleCount = 0
         
-        //if image is too narrow, make it wider
-        while imageSize.width < (imageSize.height+wordmarkSize.height+padding)*1.9 && repeatLimitHit == false {
-            //if width is really small, set to minimum width and exit loop
-            if imageSize.width < CGFloat(width) {
-                imageSize = CGRectMake(0, 0, (imageSize.height+wordmarkSize.height+padding)*2, imageSize.height)
-                break
-            }
-            
-            width += 10
-            imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(CGFloat(width), CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textAttributes, context: nil)
-            
-            //if the dimensions haven't changed, make sure we haven't hit an infinite loop
-            if imageSize.width == lastWidth && imageSize.height == lastHeight {
-                repeatCount++
-                if repeatCount >= 200 {
-                    repeatLimitHit = true
+        var currentHeight = wordmarkHidden ? imageSize.height : imageSize.height+wordmarkSize.height+padding
+        var lastRatio = currentWidth/currentHeight //current ratio
+        var lastDelta = InfinitweetDelta.Positive //default value
+        
+        //start out exponential, move to linear when/if we get stuck
+        var currentMode = InfinitweetMode.Exponential
+        
+        while cycleCount++ < maxCycles {
+            if currentMode == InfinitweetMode.Exponential {
+                currentWidth *= ratio/lastRatio
+            } else {
+                if lastRatio >= ratio {
+                    currentWidth -= delta
+                    lastDelta = InfinitweetDelta.Negative
+                } else {
+                    currentWidth += delta
+                    lastDelta = InfinitweetDelta.Positive
                 }
-            } else { //reset counter once we've seen something new
-                repeatCount = 0
             }
             
-            lastWidth = imageSize.width
-            lastHeight = imageSize.height
+            //get updated size based off new currentWidth
+            imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(currentWidth, CGFloat.max), options: options, attributes: textAttributes, context: nil)
+            
+            //recalculate ratio
+            currentHeight = wordmarkHidden ? imageSize.height : imageSize.height+wordmarkSize.height+padding
+            let currentRatio = currentWidth/currentHeight
+            
+            //if we're exponential and not getting any better, go incremental
+            if currentMode == InfinitweetMode.Exponential && (currentWidth / (ratio/lastRatio) == currentWidth * (ratio/currentRatio)) {
+                currentMode = InfinitweetMode.Linear
+                lastRatio = currentRatio
+            } else {
+                //if we're NOT exponential and not getting any better, give up
+                if currentMode == InfinitweetMode.Linear && abs(ratio-lastRatio) < abs(ratio-currentRatio) {
+                    currentWidth = (lastDelta == InfinitweetDelta.Positive) ? currentWidth - delta : currentWidth + delta
+                    imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(currentWidth, CGFloat.max), options: options, attributes: textAttributes, context: nil)
+                    currentHeight = wordmarkHidden ? imageSize.height : imageSize.height+wordmarkSize.height+padding
+                    break
+                }
+                
+                //if we're already near our target, give up
+                if abs(ratio-currentRatio) < 0.05 {
+                    break
+                } else { //else keep going
+                    lastRatio = currentRatio
+                }
+            }
         }
         
-        //avoid infinite loops
-        repeatLimitHit = false
-        lastWidth = 0.0 as CGFloat
-        lastHeight = 0.0 as CGFloat
-        repeatCount = 0
-        
-        //if image is too long, make it narrower
-        while imageSize.width > (imageSize.height+wordmarkSize.height+padding)*2.1 && repeatLimitHit == false {
-            width -= 10
-            imageSize = (text as NSString).boundingRectWithSize(CGSizeMake(CGFloat(width), CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textAttributes, context: nil)
-            
-            //if the dimensions haven't changed, make sure we haven't hit an infinite loop
-            if imageSize.width == lastWidth && imageSize.height == lastHeight {
-                repeatCount++
-                if repeatCount >= 200 {
-                    repeatLimitHit = true
-                }
-            } else { //reset counter once we've seen something new
-                repeatCount = 0
-            }
-            
-            lastWidth = imageSize.width
-            lastHeight = imageSize.height
-        }
-        
-        //round widths and add padding
-        let adjustedWidth = max(CGFloat(ceilf(Float(imageSize.width))), CGFloat(ceilf(Float(wordmarkSize.width))))
-        let adjustedHeight = CGFloat(ceilf(Float(imageSize.height))) + CGFloat(ceilf(Float(wordmarkSize.height))) + padding
-        let outerRectSize = CGSizeMake(adjustedWidth + 2*padding, adjustedHeight + 2*padding)
+        //round sizes and add padding
+        let minSize = (width : CGFloat(440), height : CGFloat(220))
+        let adjustedWidth  = max(CGFloat(ceilf(Float(currentWidth))), minSize.width)
+        let adjustedHeight = max(CGFloat(ceilf(Float(currentHeight))), minSize.height)
+        let outerRectSize  = CGSizeMake(adjustedWidth + 2*padding, adjustedHeight + 2*padding)
         
         //generate image
         UIGraphicsBeginImageContextWithOptions(outerRectSize, true, 0.0)
@@ -100,14 +107,130 @@ class Infinitweet {
         let innerRect = CGRectMake(padding, padding, adjustedWidth, adjustedHeight)
         text.drawInRect(CGRectIntegral(innerRect), withAttributes: textAttributes)
         
-        //draw infinitweet wordmark
-        let wordmarkOrigin = CGPoint(x: adjustedWidth-(wordmarkSize.width-padding), y: adjustedHeight-(wordmarkSize.height-padding))
-        let wordmarkRect = CGRectMake(wordmarkOrigin.x, wordmarkOrigin.y, wordmarkSize.width, wordmarkSize.height)
-        wordmark.drawInRect(wordmarkRect, withAttributes: wordmarkAttributes)
+        //draw infinitweet wordmark if necessary
+        if !wordmarkHidden {
+            let wordmarkOrigin = CGPoint(x: adjustedWidth-(wordmarkSize.width-padding), y: adjustedHeight-(wordmarkSize.height-padding))
+            let wordmarkRect = CGRectMake(wordmarkOrigin.x, wordmarkOrigin.y, wordmarkSize.width, wordmarkSize.height)
+            self.wordmark.drawInRect(wordmarkRect, withAttributes: wordmarkAttributes)
+        }
         
         //save new image
         self.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
     }
     
+    class func setDefaults() {
+        var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        defaults.setBool(true, forKey: self.currentDefaultKey())
+        defaults.setObject("Left", forKey: "Alignment")
+        defaults.setObject("Helvetica", forKey: "FontName")
+        defaults.setInteger(18, forKey: "FontSize")
+        
+        let whiteColor = [CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(1)]
+        let blackColor = [CGFloat(1), CGFloat(1), CGFloat(1), CGFloat(1)]
+        defaults.setObject(whiteColor, forKey: "TextColor")
+        defaults.setObject(blackColor, forKey: "BackgroundColor")
+        defaults.setInteger(20, forKey: "Padding")
+        defaults.setBool(false, forKey: "WordmarkHidden")
+        defaults.synchronize()
+    }
+    
+    class func getDisplaySettings() -> (font : UIFont, color : UIColor, background : UIColor, alignment : NSTextAlignment, wordmark : Bool) {
+        var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        let alignmentName = defaults.objectForKey("Alignment") as String
+        let fontName = defaults.objectForKey("FontName") as String
+        let fontSize = CGFloat(defaults.integerForKey("FontSize"))
+        let font = UIFont(name: fontName, size: fontSize)
+        
+        var colorArray = defaults.objectForKey("TextColor") as [CGFloat]
+        let color = colorArray.toUIColor()
+        var backgroundColorArray = defaults.objectForKey("BackgroundColor") as [CGFloat]
+        let backgroundColor = backgroundColorArray.toUIColor()
+        
+        let wordmark = defaults.boolForKey("WordmarkHidden")
+        
+        var alignment : NSTextAlignment
+        switch alignmentName {
+        case "Left":
+            alignment = NSTextAlignment.Left
+        case "Center":
+            alignment = NSTextAlignment.Center
+        case "Right":
+            alignment = NSTextAlignment.Right
+        case "Justified":
+            alignment = NSTextAlignment.Justified
+        default:
+            alignment = NSTextAlignment.Left
+        }
+        
+        return (font : font!, color : color, background : backgroundColor, alignment : alignment, wordmark : wordmark)
+    }
+    
+    class func currentDefaultKey() -> String {
+        return "Defaults2-6-6"
+    }
+}
+
+enum InfinitweetDelta {
+    case Positive, Negative
+}
+
+enum InfinitweetMode {
+    case Exponential, Linear
+}
+
+extension Array {
+    mutating func toUIColor() -> UIColor {
+        var r = self[0] as CGFloat
+        var g = self[1] as CGFloat
+        var b = self[2] as CGFloat
+        var a = self[3] as CGFloat
+        return UIColor(red: r, green: g, blue: b, alpha: a)
+    }
+}
+
+extension UIColor {
+    func toCGFloatArray() -> [CGFloat] {
+        var r = CGFloat()
+        var g = CGFloat()
+        var b = CGFloat()
+        var a = CGFloat()
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        return [r, g, b, a]
+    }
+}
+
+extension String {
+    // This function converts from HTML colors (hex strings of the form '#ffffff') to UIColors
+    mutating func hexStringToUIColor() -> UIColor {
+        var cString:String = self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+        
+        if (cString.hasPrefix("#")) {
+            cString = cString.substringFromIndex(advance(cString.startIndex, 1))
+        }
+        
+        if (countElements(cString) != 6) {
+            return UIColor.grayColor()
+        }
+        
+        var rgbValue:UInt32 = 0
+        NSScanner(string: cString).scanHexInt(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}
+
+func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(), closure)
 }

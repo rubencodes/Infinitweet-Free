@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9IP-ps-4Vd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9IP-ps-4Vd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -37,8 +37,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7D-bw-2ZM">
                                 <rect key="frame" x="16" y="122" width="568" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="YwE-aF-6rn"/>
@@ -46,7 +45,7 @@
                             </textView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="HXJ-lD-yGn">
                                 <rect key="frame" x="140" y="64" width="320" height="50"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="Eaq-Lj-3eA"/>
                                 </connections>
@@ -146,41 +145,21 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Padding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIN-hg-apr">
-                                <rect key="frame" x="16" y="256" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0px" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eys-eH-z6j">
-                                <rect key="frame" x="538" y="256" width="43" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3s9-GC-I5C">
-                                <rect key="frame" x="14" y="285" width="572" height="31"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GOF-Tl-5F2" firstAttribute="leading" secondItem="biD-Ms-vSi" secondAttribute="leading" id="1I6-AJ-acP"/>
                             <constraint firstItem="U0f-r0-2Le" firstAttribute="leading" secondItem="Bho-X1-SHI" secondAttribute="leading" id="1dB-v6-eof"/>
-                            <constraint firstItem="3s9-GC-I5C" firstAttribute="trailing" secondItem="ZBl-GQ-Y9l" secondAttribute="trailing" id="2lC-pP-giQ"/>
                             <constraint firstItem="ZBl-GQ-Y9l" firstAttribute="top" secondItem="4ri-Bj-VhX" secondAttribute="top" id="3yS-nh-P1l"/>
                             <constraint firstItem="ZBl-GQ-Y9l" firstAttribute="trailing" secondItem="C5f-yi-ryz" secondAttribute="trailingMargin" id="4tl-ZS-oCx"/>
                             <constraint firstItem="GlP-qw-Vj7" firstAttribute="trailing" secondItem="ZBl-GQ-Y9l" secondAttribute="trailing" id="71d-m0-vrD"/>
                             <constraint firstItem="biD-Ms-vSi" firstAttribute="leading" secondItem="yGD-rd-vH6" secondAttribute="leading" id="8M0-t3-lud"/>
                             <constraint firstItem="yGD-rd-vH6" firstAttribute="top" secondItem="U0f-r0-2Le" secondAttribute="bottom" constant="8" symbolic="YES" id="Edb-IF-Unb"/>
                             <constraint firstItem="biD-Ms-vSi" firstAttribute="top" secondItem="yGD-rd-vH6" secondAttribute="bottom" constant="2" id="Fux-n8-DJg"/>
-                            <constraint firstItem="cIN-hg-apr" firstAttribute="top" secondItem="4ri-Bj-VhX" secondAttribute="bottom" constant="8" symbolic="YES" id="Fwe-z4-678"/>
-                            <constraint firstItem="cIN-hg-apr" firstAttribute="leading" secondItem="3s9-GC-I5C" secondAttribute="leading" id="GdM-M1-ZA8"/>
                             <constraint firstItem="GOF-Tl-5F2" firstAttribute="top" secondItem="GlP-qw-Vj7" secondAttribute="top" id="Gyh-0I-czN"/>
-                            <constraint firstItem="eys-eH-z6j" firstAttribute="baseline" secondItem="cIN-hg-apr" secondAttribute="baseline" id="HWN-Dk-Ifu"/>
                             <constraint firstItem="v7O-ou-dbx" firstAttribute="trailing" secondItem="biD-Ms-vSi" secondAttribute="trailing" id="IWe-bT-Ywo"/>
-                            <constraint firstItem="cIN-hg-apr" firstAttribute="leading" secondItem="4ri-Bj-VhX" secondAttribute="leading" id="LCZ-eM-2Wb"/>
                             <constraint firstItem="4ri-Bj-VhX" firstAttribute="leading" secondItem="GOF-Tl-5F2" secondAttribute="leading" id="Sil-Qd-omN"/>
                             <constraint firstItem="U0f-r0-2Le" firstAttribute="top" secondItem="Bho-X1-SHI" secondAttribute="bottom" constant="8" symbolic="YES" id="U6B-EW-Nav"/>
-                            <constraint firstItem="3s9-GC-I5C" firstAttribute="top" secondItem="cIN-hg-apr" secondAttribute="bottom" constant="8" symbolic="YES" id="WAM-zZ-JKU"/>
                             <constraint firstItem="Bho-X1-SHI" firstAttribute="top" secondItem="4lh-51-MTE" secondAttribute="bottom" constant="8" symbolic="YES" id="agk-f3-F3t"/>
                             <constraint firstItem="yGD-rd-vH6" firstAttribute="baseline" secondItem="v7O-ou-dbx" secondAttribute="baseline" id="cFI-Ys-zG2"/>
                             <constraint firstItem="GlP-qw-Vj7" firstAttribute="trailing" secondItem="biD-Ms-vSi" secondAttribute="trailing" id="fqC-z3-Bys"/>
@@ -188,7 +167,6 @@
                             <constraint firstItem="U0f-r0-2Le" firstAttribute="leading" secondItem="C5f-yi-ryz" secondAttribute="leadingMargin" id="jrw-3k-sGy"/>
                             <constraint firstItem="U0f-r0-2Le" firstAttribute="trailing" secondItem="v7O-ou-dbx" secondAttribute="trailing" id="mu0-Uo-VxI"/>
                             <constraint firstItem="4ri-Bj-VhX" firstAttribute="top" secondItem="GOF-Tl-5F2" secondAttribute="bottom" constant="8" symbolic="YES" id="sTD-sF-sNC"/>
-                            <constraint firstItem="eys-eH-z6j" firstAttribute="centerX" secondItem="v7O-ou-dbx" secondAttribute="centerX" id="wLc-ou-fRb"/>
                             <constraint firstItem="yGD-rd-vH6" firstAttribute="leading" secondItem="U0f-r0-2Le" secondAttribute="leading" id="x3A-zs-Hpc"/>
                         </constraints>
                     </view>

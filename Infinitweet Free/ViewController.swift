@@ -15,78 +15,90 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var navItem: UINavigationItem!
     var clearButton: UIBarButtonItem?
     var shareButton: UIBarButtonItem?
-    var text = ""
     var keyboardIsShown : Bool?
     
+    //cache of last known state
+    let cache = (NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String).stringByAppendingPathComponent("lastKnownState.infinitweet")
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.clearButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Trash, target: self, action: "clearTextField")
         self.shareButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareInfinitweet")
         self.navItem.setRightBarButtonItems([self.shareButton!, self.clearButton!], animated: false)
         
-        super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        //have we set the latest defaults?
+        if !defaults.boolForKey(Infinitweet.currentDefaultKey()) {
+            Infinitweet.setDefaults() //set the default text attributes in memory
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.automaticallyAdjustsScrollViewInsets = false
-        self.tweetView.text = text
         self.tweetView.delegate = self
         self.tweetView.textContainer.lineFragmentPadding = 0
+        self.tweetView.allowsEditingTextAttributes = true
         
+        //handle keyboard hiding/showing
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: self.view.window)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: self.view.window)
         
         self.keyboardIsShown = false
         
         var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
-        // Do any additional setup after loading the view, typically from a nib.
-        if !defaults.boolForKey("WasTutorialShown") {
-            defaults.setObject("Helvetica", forKey: "DefaultFont")
-            defaults.setObject(CGFloat(14.0), forKey: "DefaultFontSize")
-            defaults.setObject("000000", forKey: "DefaultColor")
-            defaults.setObject("ffffff", forKey: "DefaultBackgroundColor")
-            defaults.setFloat(20, forKey: "DefaultPadding")
-            defaults.synchronize()
-            beginTutorial()
+        //have we shown the tutorial?
+        if !defaults.boolForKey("TutorialShown3") {
+            self.beginTutorial() //if not, show it
         } else {
-            var fontName = defaults.objectForKey("DefaultFont") as String
-            var fontSize = defaults.objectForKey("DefaultFontSize") as CGFloat
-            var font = UIFont(name: fontName, size: fontSize)
+            //we have shown the tutorial, restore the last known state
+            self.restoreLastKnownState()
             
-            var colorString = defaults.objectForKey("DefaultColor") as String
-            var color = colorString.hexStringToUIColor()
-            var backgroundColorString = defaults.objectForKey("DefaultBackgroundColor") as String
-            var backgroundColor = backgroundColorString.hexStringToUIColor()
-            
-            self.tweetView.font = font
-            self.tweetView.textColor = color
-            self.tweetView.backgroundColor = backgroundColor
-            self.view.backgroundColor = backgroundColor
+            //then just focus on the textview
             self.tweetView.becomeFirstResponder()
         }
     }
     
+    //restores the last state if there was one; else, just sets everything to default
+    func restoreLastKnownState() {
+        var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        if let backup = defaults.valueForKey("Backup") as? String {
+            self.tweetView.text = backup
+        }
+    }
+    
+    //something changed in the text view; update lastKnownState (and background)
+    func textViewDidChange(textView: UITextView) {
+        var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        
+        defaults.setValue(textView.text, forKey: "Backup")
+        defaults.synchronize()
+    }
+    
+    //tutorial alers
     func beginTutorial() {
         var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
         
-        var title = "Welcome!"
-        var message = "Welcome to Infinitweet! To start, enter text into the textfield. When you're ready, tap the Share icon on the upper right to share to Twitter (or elsewhere). Additionally, you can use our Action Extension to share text from within any app that supports it (e.g. Notes)."
+        var title : String?
+        var message : String?
+        var buttonTitle : String?
         
-        var tutorial = UIAlertController(title: title,
-            message: message,
+        title = "Tutorial"
+        message = "Welcome to Infinitweet! To start, type some text! When you're ready to share, tap the Share icon on the top-right to post your Infinitweet to Twitter (or elsewhere)."
+        buttonTitle = "I'm Ready"
+        
+        let tutorial = UIAlertController(title: title!,
+            message: message!,
             preferredStyle: UIAlertControllerStyle.Alert)
         
-        var OK = UIAlertAction(title: "OK",
+        let OK = UIAlertAction(title: buttonTitle!,
             style: UIAlertActionStyle.Default,
             handler: {
                 (action : UIAlertAction!) in
-                defaults.setBool(true, forKey: "WasTutorialShown")
+                
+                defaults.setBool(true, forKey: "TutorialShown3")
                 defaults.synchronize()
                 self.tweetView.becomeFirstResponder()
         })
@@ -154,31 +166,21 @@ class ViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textViewDidChange(textView: UITextView) {
-        self.text = self.tweetView.text
-    }
-    
+    //user wants to share the infinitweet
     func shareInfinitweet() {
-        if self.text != "" {
-            var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+        if self.tweetView.text != "" { //if text exists
+            //get properties for new infinitweet
+            let settings = Infinitweet.getDisplaySettings()
+                        
+            //create infinitweet with properties
+            let infinitweet = Infinitweet(text: self.tweetView.text, font: settings.font, color: settings.color, background: settings.background, wordmarkHidden: settings.wordmark)
             
-            var fontName = defaults.objectForKey("DefaultFont") as String
-            var fontSize = defaults.objectForKey("DefaultFontSize") as CGFloat
-            var font = UIFont(name: fontName, size: fontSize)
-            
-            var colorString = defaults.objectForKey("DefaultColor") as String
-            var color = colorString.hexStringToUIColor()
-            var backgroundColorString = defaults.objectForKey("DefaultBackgroundColor") as String
-            var backgroundColor = backgroundColorString.hexStringToUIColor()
-            var padding = CGFloat(defaults.floatForKey("DefaultPadding"))
-            
-            var infinitweet = Infinitweet(text: self.text, font: font!, color: color, background: backgroundColor, padding: padding)
-            
+            //preload text on share
             var shareText : String?
-            if !defaults.boolForKey("FirstShare") {
+            var defaults = NSUserDefaults(suiteName: "group.Codes.Ruben.Infinitweet")!
+            let firstShare = !defaults.boolForKey("FirstShare")
+            if firstShare {
                 shareText = "Sharing from @InfinitweetApp for the first time!"
-                defaults.setBool(true, forKey: "FirstShare")
-                defaults.synchronize()
             } else {
                 shareText = "via @InfinitweetApp"
             }
@@ -186,6 +188,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             //add objects to share
             var items = [AnyObject]()
             items.append(infinitweet.image)
+            items.append(shareText!)
             
             //create share menu, handle iPad case
             let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -196,7 +199,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             //once finished sharing, display success message if completed
             activityViewController.completionHandler = {(activityType, completed:Bool) in
                 if completed {
-                    var alert = UIAlertController(title: "Success!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Success!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                     
                     self.presentViewController(alert, animated: true, completion: { () -> Void in
                         delay(0.75, { () -> () in
@@ -213,14 +216,14 @@ class ViewController: UIViewController, UITextViewDelegate {
             //show the share menu
             self.presentViewController(activityViewController, animated: true, completion: nil)
         } else {
-            var title = "Oops!"
-            var message = "Please enter some text first, then we'll turn it into a shareable image."
+            let title = "Oops!"
+            let message = "Please enter some text first, then we'll turn it into a shareable image."
             
-            var error = UIAlertController(title: title,
+            let error = UIAlertController(title: title,
                 message: message,
                 preferredStyle: UIAlertControllerStyle.Alert)
             
-            var OK = UIAlertAction(title: "OK",
+            let OK = UIAlertAction(title: "OK",
                 style: UIAlertActionStyle.Default,
                 handler: {
                     (action : UIAlertAction!) in
@@ -236,15 +239,6 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     func clearTextField() {
         self.tweetView.text = ""
-        self.text = ""
+        self.textViewDidChange(self.tweetView)
     }
-}
-
-func delay(delay:Double, closure:()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(delay * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(), closure)
 }
